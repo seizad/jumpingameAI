@@ -29,6 +29,9 @@ function draw(){
 
     counter++;
 
+    /* 
+     * reomve any bots that have hit any bar 
+     */
     for (let i = bars.length - 1; i >= 0; i--){
       bars[i].update();
       for (let j = bots.length - 1; j >= 0; j--){

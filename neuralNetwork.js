@@ -33,6 +33,26 @@ class NeuralNetwork {
     });
   }
 
+  crossOver(partner) {
+    return tf.tidy(() => {
+      const modelCopy = this.createModel();
+      const weights = this.model.getWeights();
+      const partnerWeights = partner.model.getWeights();
+      const childWeights = [];
+      for (let i = 0; i < weights.length; i++) {
+        // randomly pick between own and partner's weights
+        childWeights[i] = random() < 0.5 ? weights[i] : partnerWeights[i];
+      }        
+      modelCopy.setWeights(childWeights);
+      return new NeuralNetwork(
+        modelCopy,
+        this.input_nodes,
+        this.hidden_nodes,
+        this.output_nodes
+      );
+    });
+  }
+
   mutate(rate) {
     tf.tidy(() => {
       const weights = this.model.getWeights();

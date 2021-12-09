@@ -1,6 +1,6 @@
 class Bar{
   constructor(pos){
-    this.top = random(height/6, (2/3) * height);
+    this.top = random(height/6, (1/10) * height);
     this.x = width + pos;
     this.w = 80;
     this.speed = 8;
